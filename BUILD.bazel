@@ -10,7 +10,9 @@ go_library(
     srcs = ["main.go"],
     importpath = "example",
     visibility = ["//visibility:private"],
-    deps = ["@com_github_envoyproxy_go_control_plane//envoy/service/auth/v2:go_default_library"],
+    deps = [
+        "@com_github_envoyproxy_go_control_plane//envoy/service/auth/v2:go_default_library",
+    ],
 )
 
 go_binary(

@@ -22,31 +22,6 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies()
 
-http_archive(
-    name = "io_bazel_rules_docker",
-    sha256 = "aed1c249d4ec8f703edddf35cbe9dfaca0b5f5ea6e4cd9e83e99f3b0d1136c3d",
-    strip_prefix = "rules_docker-0.7.0",
-    urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.7.0.tar.gz"],
-)
-
-load(
-    "@io_bazel_rules_docker//repositories:repositories.bzl",
-    container_repositories = "repositories",
-)
-
-container_repositories()
-
-load(
-    "@io_bazel_rules_docker//container:container.bzl",
-    "container_pull",
-)
-load(
-    "@io_bazel_rules_docker//go:image.bzl",
-    _go_image_repos = "repositories",
-)
-
-_go_image_repos()
-
 go_repository(
     name = "co_honnef_go_tools",
     commit = "c2f93a96b099",
@@ -68,14 +43,13 @@ go_repository(
 go_repository(
     name = "com_github_envoyproxy_go_control_plane",
     importpath = "github.com/envoyproxy/go-control-plane",
-    tag = "v0.7.1",
-    build_file_proto_mode = "disable_global",
+    tag = "v0.8.0",
 )
 
 go_repository(
     name = "com_github_envoyproxy_protoc_gen_validate",
+    commit = "5eea078e0e2b",
     importpath = "github.com/envoyproxy/protoc-gen-validate",
-    tag = "v0.0.14",
 )
 
 go_repository(
@@ -105,7 +79,13 @@ go_repository(
 go_repository(
     name = "com_github_golang_protobuf",
     importpath = "github.com/golang/protobuf",
-    tag = "v1.2.0",
+    tag = "v1.3.1",
+)
+
+go_repository(
+    name = "com_github_iancoleman_strcase",
+    commit = "e506e3ef7365",
+    importpath = "github.com/iancoleman/strcase",
 )
 
 go_repository(
@@ -121,15 +101,27 @@ go_repository(
 )
 
 go_repository(
-    name = "com_github_lyft_protoc_gen_validate",
-    importpath = "github.com/lyft/protoc-gen-validate",
-    tag = "v0.0.14",
+    name = "com_github_lyft_protoc_gen_star",
+    importpath = "github.com/lyft/protoc-gen-star",
+    tag = "v0.4.10",
+)
+
+go_repository(
+    name = "com_github_spf13_afero",
+    importpath = "github.com/spf13/afero",
+    tag = "v1.2.2",
 )
 
 go_repository(
     name = "com_google_cloud_go",
     importpath = "cloud.google.com/go",
     tag = "v0.26.0",
+)
+
+go_repository(
+    name = "io_istio_gogo_genproto",
+    commit = "6d926a6e6feb",
+    importpath = "istio.io/gogo-genproto",
 )
 
 go_repository(
@@ -164,7 +156,7 @@ go_repository(
 
 go_repository(
     name = "org_golang_x_net",
-    commit = "d8887717615a",
+    commit = "f4e77d36d62c",
     importpath = "golang.org/x/net",
 )
 
@@ -176,20 +168,20 @@ go_repository(
 
 go_repository(
     name = "org_golang_x_sync",
-    commit = "1d60e4601c6f",
+    commit = "112230192c58",
     importpath = "golang.org/x/sync",
 )
 
 go_repository(
     name = "org_golang_x_sys",
-    commit = "d0b11bdaac8a",
+    commit = "2d0786266e9c",
     importpath = "golang.org/x/sys",
 )
 
 go_repository(
     name = "org_golang_x_text",
     importpath = "golang.org/x/text",
-    tag = "v0.3.0",
+    tag = "v0.3.2",
 )
 
 go_repository(
